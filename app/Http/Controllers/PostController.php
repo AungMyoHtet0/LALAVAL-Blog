@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Requests\MyRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
     public function index()
-    {
+    {   
+        //Auth::attempt(['email'=> 'mgmg@gmail.com','password'=> '12345']);
         $posts = Post::all();
         return view('posts.index', compact('posts'));
     }

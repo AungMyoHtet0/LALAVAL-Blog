@@ -26,6 +26,9 @@ class MyRequest extends FormRequest
         return [
             'title' => 'required',
             'body' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
            
         ];
     }
@@ -34,7 +37,11 @@ class MyRequest extends FormRequest
     {
         return[
             'title.required'=>'Please Enter Title',
-            'body.required'=>'Enter Your Content'
+            'body.required'=>'Enter Your Content',
+            'name.required'=>'Please Enter Your Name',
+            'email.required'=>"Email Can't be Blank",
+            'password.required'=>'Please Use Strong Password'
         ];
+
     }
 }
