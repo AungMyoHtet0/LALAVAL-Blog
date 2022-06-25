@@ -41,6 +41,7 @@
 			<p class="fs-3">{{$post->body}}</p>
 		</div>
 	</a>
+	@auth
 		<div class="card-footer my-5">
 			<p>Post Update At  {{$post->updated_at->format('d M,Y')}}</p>
 			<form action="/post/{{$post->id}}" method="POST">
@@ -50,6 +51,7 @@
 			</form>
 			<a class="btn btn-primary mt-3" href="/post/{{$post->id}}/edit">Edit</a>
 		</div>
+	@endauth
 	</div>
 	@endforeach
 </div>
