@@ -8,13 +8,15 @@ use App\Http\Controllers\RegisterController;
 
 Route::resource('post',PostController::class);
 
-Route::get('post',[PostController::class, 'index']);
-Route::get('post/create',[PostController::class, 'create'])->middleware('myAuth');
-Route::post('post',[PostController::class, 'store']);
-Route::get('post/{id}',[PostController::class, 'show']);
-Route::get('post/{id}/edit',[PostController::class, 'edit']);
-Route::put('post/{id}',[PostController::class, 'update']);
-Route::delete('post/{id}',[PostController::class, 'destroy']);
+Route::prefix('post')->middleware('myAuth')->group(function(){
+		Route::get('/',[PostController::class, 'index']);
+		Route::get('/create',[PostController::class, 'create']);
+		Route::post('/',[PostController::class, 'store']);
+		Route::get('/{id}',[PostController::class, 'show']);
+		Route::get('/{id}/edit',[PostController::class, 'edit']);
+		Route::put('/{id}',[PostController::class, 'update']);
+		Route::delete('/{id}',[PostController::class, 'destroy']);
+});
 
 
 Route::get('register',[RegisterController::class,'create']);
