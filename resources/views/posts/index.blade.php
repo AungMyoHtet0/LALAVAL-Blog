@@ -25,6 +25,7 @@
 </div>
 @endif
 <div class="card mt-5 border-0">
+
 	@foreach ($posts as $post)
 	<div class="card-title ">
 		<div class="card-header pt-5 mt-5 border-info">
@@ -54,5 +55,7 @@
 	@endauth
 	</div>
 	@endforeach
+	{{$posts->links()}}
 </div>
+
 @endsection

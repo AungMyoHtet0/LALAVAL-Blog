@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Post;
 use App\Http\Requests\MyRequest;
 use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -12,7 +14,12 @@ class PostController extends Controller
     {   
         //Auth::attempt(['email'=> 'mgmg@gmail.com','password'=> '12345']);
         
-            $posts = Post::all();
+            // $posts = Post::paginate(5);
+             $posts = Post::select('posts.*','users.name')
+             ->join('users', 'user_id', '=', 'users.id')
+            // ->join('posts.*', 'user_id', '=', 'users.name')
+             ->select('users.*', 'users.id', 'user_id')->paginate(5);
+            // ->get();
             return view('posts.index', compact('posts'));
     
             
@@ -35,6 +42,7 @@ class PostController extends Controller
         Post::create([
             'title'=> $request->title,
             'body'=> $request->body,
+            'user_id'=>2,
         ]);
 
         //session()->flash('postCreate','Post Created Successfuly');
