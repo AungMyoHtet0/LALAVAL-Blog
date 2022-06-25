@@ -11,14 +11,15 @@
 			<div class="card">
 				<div class="card-title">
 					<div class="card-header">
-						<h3>{{$post->title}}</h3>
+						<h1>{{$post->title}}</h1>
 					</div>
 					<div class="card-body">
-						<p>{{$post->body}}</p>
+						<p class="fs-3">{{$post->body}}</p>
 					</div>
 					<div class="card-footer">
 						<p>{{$post->created_at}}</p>
 						<p>{{$post->updated_at}}</p>
+						<p class="fw-bold">Post By  {{Auth::user()->name}}</p>
 						<a class="btn btn-success" href="/post">Go Home</a>
 					</div>
 				</div>

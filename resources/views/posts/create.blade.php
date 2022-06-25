@@ -13,7 +13,7 @@
 				</div>
 				<div class="card-body">
 					<div class="form-floating mt-2">
-						<input class="form-control" type="text" name='title' placeholder="Post Title">
+						<input class="form-control @error('title') is-invalid @enderror" type="text" name='title' placeholder="Post Title">
 						<label for="title">Post Title</label>
 						<div>
 							@error('title')
@@ -22,7 +22,7 @@
 						</div>
 					</div>
 					<div class="form-floating mt-3">
-						<textarea class="form-control " name="body" placeholder="Post Content"></textarea>
+						<textarea class="form-control @error('body') is-invalid @enderror" name="body" placeholder="Post Content"></textarea>
 						<label for="body">Post Content</label>
 					</div>
 					<div>

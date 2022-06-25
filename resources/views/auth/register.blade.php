@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-md-6 mx-auto mt-5">
-	<form class="from" method="POST" action="/login">
+	<form class="from" method="POST" action="/register">
 		@csrf
 		<div class="card">
 			<div class="card-title">
@@ -14,7 +14,7 @@
 				</div>
 				<div class="card-body">
 					<div class="form-floating mt-2">
-						<input class="form-control" type="text" name='name' placeholder="Enter Your Name">
+						<input class="form-control @error('name') is-invalid @enderror " type="text" name='name' placeholder="Enter Your Name">
 						<label for="name">Enter Your Name</label>
 						<div>
 							@error('name')
@@ -23,7 +23,7 @@
 						</div>
 					</div>
 					<div class="form-floating mt-3">
-						<input class="form-control" type="email" name="email" placeholder="Enter Your Email">
+						<input class="form-control @error('email') is-invalid @enderror" type="email" name="email" placeholder="Enter Your Email">
 						<label for="email">Enter Your Email</label>
 					</div>
 					<div>
@@ -32,7 +32,7 @@
 						@enderror
 					</div>
 					<div class="form-floating mt-3">
-						<input class="form-control" type="password" name="password" placeholder="Enter Your Password">
+						<input class="form-control @error('password') is-invalid @enderror" type="password" name="password" placeholder="Enter Your Password">
 						<label for="password">Enter Your Password</label>
 					</div>
 					<div>

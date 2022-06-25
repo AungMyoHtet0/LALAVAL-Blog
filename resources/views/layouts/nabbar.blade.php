@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -29,9 +30,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            @if(Auth::check())
-                            {{Auth::user('name')}}
-                            @endif
+                            
+                           @if(Auth::check())
+                           {{ Auth::user()->name }}
+                           @endif
+                            
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             @if(! Auth::check())

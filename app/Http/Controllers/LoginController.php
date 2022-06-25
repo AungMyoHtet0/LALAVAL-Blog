@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use App\Models\User;
-use App\Http\Requests\MyRequest;
+use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
@@ -13,12 +13,16 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function store(MyRequest $request){
-
+    public function store(LoginRequest $request){
+        $request->all();
+        
         $user = User::where('email',$request->email)->first();
 
         if(! $user){
-           return redirect('/login');
+            throw ValidationException::withMessages([
+                'MyError' => 'Email or Pasword Is incorrect'
+            ]);
+        //   return redirect('/login');
         }
 
         $info = [
@@ -28,7 +32,10 @@ class LoginController extends Controller
 
         $auth=Auth::attempt($info);
         if(! $auth){
-            return redirect('login');
+            throw ValidationException::withMessages([
+                'MyError'=>'email or password is incorrect'
+            ]);
+            //return redirect('login');
             
         }
         return redirect('post');
