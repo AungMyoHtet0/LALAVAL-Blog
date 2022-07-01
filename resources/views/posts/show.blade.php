@@ -19,7 +19,7 @@
 					<div class="card-footer">
 						<p>{{$post->created_at}}</p>
 						<p>{{$post->updated_at}}</p>
-						<p class="fw-bold">Post By  {{Auth::user()->name}}</p>
+						<p class="fw-bold">Post By  {{$post->author}}</p>
 						<a class="btn btn-success" href="/post">Go Home</a>
 					</div>
 				</div>

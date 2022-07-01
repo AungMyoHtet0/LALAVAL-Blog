@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<input class="btn btn-primary" type="submit" value="Create">
+					<input class="btn btn-success" value="Create" type="submit">
 					<a class="btn btn-secondary" href="/post">Back</a>
 				</div>
 			</div>

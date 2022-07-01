@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Http\Requests\MyRequest;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -14,12 +15,13 @@ class PostController extends Controller
     {   
         //Auth::attempt(['email'=> 'mgmg@gmail.com','password'=> '12345']);
         
-            // $posts = Post::paginate(5);
-             $posts = Post::select('posts.*','users.name')
-             ->join('users', 'user_id', '=', 'users.id')
-            // ->join('posts.*', 'user_id', '=', 'users.name')
-             ->select('users.*', 'users.id', 'user_id')->paginate(5);
-            // ->get();
+             $posts = Post::where('title','like','%'.request('search').'%')->OrderBy('id','desc')->simplepaginate(5);
+            // reuquest('search');
+            // $posts = Post::select('posts.*','users.name as author')
+            // ->join('users', 'users.id', '=', 'posts.user_id')->OrderBy('id','desc')->simplePaginate(3);
+            // ->orderBy('id','desc');
+            // ->first();
+            $post = Post::select(['posts.*'])->join('categories','categories.post_id','posts.category_id')->where('posts.id',request('id'))->first();
             return view('posts.index', compact('posts'));
     
             
@@ -42,7 +44,8 @@ class PostController extends Controller
         Post::create([
             'title'=> $request->title,
             'body'=> $request->body,
-            'user_id'=>2,
+            'user_id'=>auth()->id(),
+            'category_id'=>Category::first()->id
         ]);
 
         //session()->flash('postCreate','Post Created Successfuly');
@@ -60,7 +63,8 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::find($id);
+        //$post = Post::find($id);
+        $post = Post::select(['posts.*','users.name as author'])->join('users','users.id','posts.user_id')->where('posts.id',$id)->first();
         return view('posts.show', ['post' => $post]);
     }
 
