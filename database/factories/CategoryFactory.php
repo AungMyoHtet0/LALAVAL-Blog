@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'post_id'=>Post::inRandomOrder()->first()->id,
+            'name'=>$this->faker->text('10')
         ];
     }
 }

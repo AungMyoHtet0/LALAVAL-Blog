@@ -21,7 +21,7 @@ class PostController extends Controller
             // ->join('users', 'users.id', '=', 'posts.user_id')->OrderBy('id','desc')->simplePaginate(3);
             // ->orderBy('id','desc');
             // ->first();
-            $post = Post::select(['posts.*'])->join('categories','categories.post_id','posts.category_id')->where('posts.id',request('id'))->first();
+
             return view('posts.index', compact('posts'));
     
             

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyPostController;
 use Illuminate\Support\Facades\Route;
@@ -27,3 +28,10 @@ Route::post('login',[LoginController::class,'store']);
 Route::get('logout',[LoginController::class,'destroy']);
 
 Route::get('my/post',[MyPostController::class,'index']);
+
+
+Route::get('category',[CategoryController::class,'index'])->name('categories.index');
+Route::get('category/create',[CategoryController::class,'create'])->name('categories.create');
+Route::post('category/{id}',[CategoryController::class,'store'])->name('categories.store');
+Route::put('category/{id}/edit',[CategoryController::class,'update'])->name('categories.update');
+Route::delete('category/{id}',[CategoryController::class,'destroy'])->name('categories.destroy');

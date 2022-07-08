@@ -35,7 +35,4 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function category(){
-        return $this->hasMany(Category::class,'post_id');
-    }
 }
